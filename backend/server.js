@@ -1262,6 +1262,33 @@ app.get("/api/bookings", (req, res) => {
 
 });
 
+app.post("/api/bookings", (req, res) => {
+    const { name, phone, date, people, package: packageName } = req.body;
+    const numericPeople = Number(people);
+    const prices = {
+        "Basic Trek": 499,
+        "Trek + Breakfast": 799,
+        "One Night Stay": 1499
+    };
+
+    if (!name || !phone || !date || !packageName || !Number.isInteger(numericPeople) || numericPeople < 1 || !prices[packageName]) {
+        return res.status(400).json({ message: "Please provide valid booking details." });
+    }
+
+    const booking = {
+        id: bookings.length ? Math.max(...bookings.map((item) => item.id)) + 1 : 1,
+        name: name.trim(),
+        phone,
+        date,
+        people: numericPeople,
+        package: packageName,
+        amount: prices[packageName] * numericPeople
+    };
+
+    bookings.push(booking);
+    res.status(201).json(booking);
+});
+
 
 /* =========================
    SERVER

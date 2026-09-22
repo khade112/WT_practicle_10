@@ -8,6 +8,10 @@ function App() {
     const [bookings, setBookings] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
+    const [selectedPackage, setSelectedPackage] = useState("Basic Trek");
+    const [form, setForm] = useState({ name: "", phone: "", date: "", people: 1 });
+    const [submitMessage, setSubmitMessage] = useState("");
+    const [submitting, setSubmitting] = useState(false);
 
     const fetchBookings = async () => {
         try {
@@ -30,6 +34,35 @@ function App() {
     useEffect(() => {
         fetchBookings();
     }, []);
+
+    const choosePackage = (packageName) => {
+        setSelectedPackage(packageName);
+        setSubmitMessage("");
+        document.getElementById("bookings")?.scrollIntoView({ behavior: "smooth" });
+    };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        setSubmitting(true);
+        setSubmitMessage("");
+
+        try {
+            const response = await axios.post(API_URL, {
+                ...form,
+                people: Number(form.people),
+                package: selectedPackage
+            });
+
+            setBookings((currentBookings) => [...currentBookings, response.data]);
+            setForm({ name: "", phone: "", date: "", people: 1 });
+            setSubmitMessage("Booking confirmed successfully!");
+        } catch (err) {
+            console.error(err);
+            setSubmitMessage("Booking failed. Please try again.");
+        } finally {
+            setSubmitting(false);
+        }
+    };
 
     const totalPeople = bookings.reduce(
         (total, booking) =>
@@ -289,6 +322,7 @@ function App() {
                         <a
                             href="#bookings"
                             className="package-button"
+                            onClick={() => choosePackage("Basic Trek")}
                         >
                             Choose Package →
                         </a>
@@ -339,6 +373,7 @@ function App() {
                         <a
                             href="#bookings"
                             className="package-button"
+                            onClick={() => choosePackage("Trek + Breakfast")}
                         >
                             Choose Package →
                         </a>
@@ -385,6 +420,7 @@ function App() {
                         <a
                             href="#bookings"
                             className="package-button"
+                            onClick={() => choosePackage("One Night Stay")}
                         >
                             Choose Package →
                         </a>
@@ -479,6 +515,37 @@ function App() {
                     </button>
 
                 </div>
+
+                <form className="booking-form" onSubmit={handleSubmit}>
+                    <div className="form-field">
+                        <label htmlFor="name">Full name</label>
+                        <input id="name" required value={form.name} onChange={(event) => setForm({ ...form, name: event.target.value })} />
+                    </div>
+                    <div className="form-field">
+                        <label htmlFor="phone">Phone</label>
+                        <input id="phone" required pattern="[0-9]{10}" title="Enter a 10-digit phone number" value={form.phone} onChange={(event) => setForm({ ...form, phone: event.target.value })} />
+                    </div>
+                    <div className="form-field">
+                        <label htmlFor="date">Trek date</label>
+                        <input id="date" type="date" required value={form.date} onChange={(event) => setForm({ ...form, date: event.target.value })} />
+                    </div>
+                    <div className="form-field">
+                        <label htmlFor="people">Trekkers</label>
+                        <input id="people" type="number" min="1" max="20" required value={form.people} onChange={(event) => setForm({ ...form, people: event.target.value })} />
+                    </div>
+                    <div className="form-field">
+                        <label htmlFor="package">Package</label>
+                        <select id="package" value={selectedPackage} onChange={(event) => setSelectedPackage(event.target.value)}>
+                            <option>Basic Trek</option>
+                            <option>Trek + Breakfast</option>
+                            <option>One Night Stay</option>
+                        </select>
+                    </div>
+                    <button className="submit-booking" type="submit" disabled={submitting}>
+                        {submitting ? "Confirming..." : "Confirm Booking"}
+                    </button>
+                    {submitMessage && <p className="submit-message">{submitMessage}</p>}
+                </form>
 
 
                 {loading && (
