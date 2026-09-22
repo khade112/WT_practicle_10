@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "./App.css";
 
-const API_URL = "http://localhost:5003/api/bookings";
+const API_URL = "https://kalsubai-backend.onrender.com/api/bookings";
 
 function App() {
     const [bookings, setBookings] = useState([]);
