@@ -93,6 +93,7 @@ function App() {
                     <a href="#about">About</a>
                     <a href="#packages">Packages</a>
                     <a href="#bookings">Bookings</a>
+                    <a href="#contact">Contact</a>
                 </nav>
 
                 <a
@@ -676,6 +677,51 @@ function App() {
             </section>
 
 
+            {/* ================= CONTACT ================= */}
+
+            <section id="contact" className="contact-section">
+                <div className="contact-heading">
+                    <div className="section-label">GET IN TOUCH</div>
+                    <h2>
+                        Plan your next
+                        <span> Kalsubai trek.</span>
+                    </h2>
+                    <p>
+                        Need help planning your visit? Check the trek location
+                        or send your preferred date and group size through the
+                        booking form.
+                    </p>
+                </div>
+
+                <div className="contact-options">
+                    <a
+                        className="contact-option"
+                        href="https://www.google.com/maps/search/?api=1&query=Bari+Village%2C+Maharashtra"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        <span className="contact-number">01</span>
+                        <span className="contact-copy">
+                            <span className="contact-label">TREK LOCATION</span>
+                            <strong>Bari Village, Maharashtra</strong>
+                            <span>Open directions in Google Maps</span>
+                        </span>
+                        <span className="contact-arrow" aria-hidden="true">↗</span>
+                    </a>
+
+                    <a className="contact-option" href="#bookings">
+                        <span className="contact-number">02</span>
+                        <span className="contact-copy">
+                            <span className="contact-label">BOOKING ENQUIRIES</span>
+                            <strong>Choose a trek package</strong>
+                            <span>Share your date and group size</span>
+                        </span>
+                        <span className="contact-arrow" aria-hidden="true">↓</span>
+                    </a>
+                </div>
+            </section>
+
+
             {/* ================= CTA ================= */}
 
             <section className="cta-section">
@@ -751,6 +797,10 @@ function App() {
 
                         <a href="#bookings">
                             Bookings
+                        </a>
+
+                        <a href="#contact">
+                            Contact
                         </a>
 
                     </div>

@@ -1393,6 +1393,89 @@ button {
 
 
 /* =========================================
+   CONTACT
+========================================= */
+
+.contact-section {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 9%;
+    align-items: center;
+    padding: 100px 10%;
+    background: #fff;
+}
+
+.contact-heading {
+    max-width: 440px;
+}
+
+.contact-heading h2 {
+    margin: 14px 0 18px;
+    font-family: "Playfair Display", serif;
+    font-size: 42px;
+    line-height: 1.12;
+}
+
+.contact-heading h2 span {
+    color: #577b5d;
+    font-style: italic;
+}
+
+.contact-heading p {
+    color: #68736b;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.contact-options {
+    border-top: 1px solid #dfe4dd;
+}
+
+.contact-option {
+    display: grid;
+    grid-template-columns: 42px 1fr 24px;
+    gap: 16px;
+    align-items: center;
+    padding: 24px 0;
+    border-bottom: 1px solid #dfe4dd;
+}
+
+.contact-number,
+.contact-label {
+    color: #8a7250;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.contact-copy {
+    display: grid;
+    gap: 6px;
+}
+
+.contact-copy strong {
+    color: #17251d;
+    font-size: 17px;
+}
+
+.contact-copy > span:last-child {
+    color: #68736b;
+    font-size: 12px;
+}
+
+.contact-arrow {
+    color: #577b5d;
+    font-size: 20px;
+    text-align: right;
+    transition: transform 0.2s ease;
+}
+
+.contact-option:hover .contact-arrow {
+    transform: translate(3px, -2px);
+}
+
+
+/* =========================================
    CTA
 ========================================= */
 
@@ -1666,6 +1749,15 @@ footer {
             repeat(2, 1fr);
     }
 
+
+    .contact-section {
+        grid-template-columns:
+            1fr;
+
+        gap:
+            35px;
+    }
+
 }
 
 
@@ -1718,9 +1810,16 @@ footer {
 
     .intro,
     .packages-section,
-    .bookings-section {
+    .bookings-section,
+    .contact-section {
         padding:
             75px 6%;
+    }
+
+
+    .contact-heading h2 {
+        font-size:
+            36px;
     }
 
 
