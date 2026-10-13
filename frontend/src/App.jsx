@@ -694,13 +694,33 @@ function App() {
                 </div>
 
                 <div className="contact-options">
+                    <a className="contact-option" href="tel:8108730795">
+                        <span className="contact-number">01</span>
+                        <span className="contact-copy">
+                            <span className="contact-label">PHONE</span>
+                            <strong>8108730795</strong>
+                            <span>Tap to call</span>
+                        </span>
+                        <span className="contact-arrow" aria-hidden="true">↗</span>
+                    </a>
+
+                    <a className="contact-option" href="mailto:shubhamkhade331@gmail.com">
+                        <span className="contact-number">02</span>
+                        <span className="contact-copy">
+                            <span className="contact-label">EMAIL</span>
+                            <strong>shubhamkhade331@gmail.com</strong>
+                            <span>Tap to send an email</span>
+                        </span>
+                        <span className="contact-arrow" aria-hidden="true">↗</span>
+                    </a>
+
                     <a
                         className="contact-option"
                         href="https://www.google.com/maps/search/?api=1&query=Bari+Village%2C+Maharashtra"
                         target="_blank"
                         rel="noreferrer"
                     >
-                        <span className="contact-number">01</span>
+                        <span className="contact-number">03</span>
                         <span className="contact-copy">
                             <span className="contact-label">TREK LOCATION</span>
                             <strong>Bari Village, Maharashtra</strong>
@@ -710,7 +730,7 @@ function App() {
                     </a>
 
                     <a className="contact-option" href="#bookings">
-                        <span className="contact-number">02</span>
+                        <span className="contact-number">04</span>
                         <span className="contact-copy">
                             <span className="contact-label">BOOKING ENQUIRIES</span>
                             <strong>Choose a trek package</strong>
