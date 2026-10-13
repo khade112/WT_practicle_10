@@ -1311,6 +1311,38 @@ button {
     white-space: nowrap;
 }
 
+.booking-summary {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding-top: 16px;
+    border-top: 1px solid #edf0eb;
+}
+
+.booking-total {
+    display: grid;
+    gap: 3px;
+}
+
+.booking-total span {
+    color: #626d65;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.booking-total strong {
+    color: #183c2b;
+    font-size: 22px;
+}
+
+.booking-total small {
+    color: #737c75;
+    font-size: 11px;
+}
+
 .submit-booking:disabled {
     cursor: wait;
     opacity: 0.65;
@@ -1881,6 +1913,24 @@ footer {
     .submit-message {
         grid-column:
             auto;
+    }
+
+
+    .booking-summary {
+        grid-column:
+            auto;
+
+        flex-direction:
+            column;
+
+        align-items:
+            stretch;
+    }
+
+
+    .booking-summary .submit-booking {
+        width:
+            100%;
     }
 
 

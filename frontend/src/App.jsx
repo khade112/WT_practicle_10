@@ -2,6 +2,12 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "./App.css";
 
+const PACKAGE_PRICES = {
+    "Basic Trek": 499,
+    "Trek + Breakfast": 799,
+    "One Night Stay": 1499
+};
+
 const API_URL = "https://kalsubai-backend.onrender.com/api/bookings";
 
 function App() {
@@ -69,6 +75,8 @@ function App() {
             total + Number(booking.people || 0),
         0
     );
+    const trekkerCount = Number(form.people) || 0;
+    const estimatedTotal = (PACKAGE_PRICES[selectedPackage] || 0) * trekkerCount;
 
     return (
         <div className="app">
@@ -542,9 +550,18 @@ function App() {
                             <option>One Night Stay</option>
                         </select>
                     </div>
-                    <button className="submit-booking" type="submit" disabled={submitting}>
-                        {submitting ? "Confirming..." : "Confirm Booking"}
-                    </button>
+                    <div className="booking-summary">
+                        <div className="booking-total">
+                            <span>ESTIMATED TOTAL</span>
+                            <strong>₹{estimatedTotal.toLocaleString("en-IN")}</strong>
+                            <small>
+                                ₹{(PACKAGE_PRICES[selectedPackage] || 0).toLocaleString("en-IN")} × {trekkerCount} trekkers
+                            </small>
+                        </div>
+                        <button className="submit-booking" type="submit" disabled={submitting}>
+                            {submitting ? "Confirming..." : "Confirm Booking"}
+                        </button>
+                    </div>
                     {submitMessage && <p className="submit-message">{submitMessage}</p>}
                 </form>
 
